@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.game {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(80px, 100px));
+  grid-template-rows: repeat(3, minmax(80px, 100px));
+  gap: 8px;
+  background-color: #1e272e;
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.square {
+  background-color: #ffffff;
+  border: none;
+  font-size: 2.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.square:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.square:active {
+  transform: scale(0.95);
+}
+
+.square.X {
+  color: #ff4757; /* merah lembut untuk X */
+  animation: popX 0.3s ease;
+}
+
+.square.O {
+  color: #1e90ff; /* biru cerah untuk O */
+  animation: popO 0.3s ease;
+}
+
+@keyframes popX {
+  0% { transform: scale(0.5) rotate(-20deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes popO {
+  0% { transform: scale(0.5) rotate(20deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+.game-info {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.game-info ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-info button {
+  padding: 8px 14px;
+  margin-bottom: 6px;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.game-info button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.game-info button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.winning-square {
+  background: linear-gradient(135deg, #ffe259, #ffa751);
+  animation: winnerGlow 0.8s infinite alternate;
+  color: #fff !important;
+}
+
+@keyframes winnerGlow {
+  0% { box-shadow: 0 0 10px #ffa751; transform: scale(1); }
+  100% { box-shadow: 0 0 25px #ff6f00; transform: scale(1.05); }
+}
+
+.winner-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  padding: 25px 35px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  z-index: 9999;
+  animation: popupFadeIn 0.4s ease forwards;
+}
+
+.winner-popup h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.winner-popup button {
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.winner-popup button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+@keyframes popupFadeIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 9998;
+}
